@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Flex, VStack, Stack, Heading, Text, Image } from '@chakra-ui/react';
 import BookingModal from '../resuable/bookingModal';
 import BookingForm from '../pages/bookingForm';
+import food4 from '../assets/food4.jpg'
 
 const CallToAction = ({ formData, availableTimes, handleChange, dispatch, submitForm }) => {
   return (
@@ -31,7 +32,7 @@ const CallToAction = ({ formData, availableTimes, handleChange, dispatch, submit
         </Box>
         <Box flex={1} mt={[8, 0]}>
           <Stack align="center">
-            <Image src="assets/your-image.png" alt="Your Image Description" />
+            <Image src={food4} width={"600px"} height={"200px"} style={{ objectFit: "cover"}} alt="special dish from little lemon" />
           </Stack>
         </Box>
       </Flex>
