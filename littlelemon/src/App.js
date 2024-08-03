@@ -34,7 +34,6 @@ function App() {
   const [availableTimes, dispatch] = useReducer(timesReducer, [], initializeTimes);
 
   const handleChange = (e) => {
-    e.preventDefault();
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -68,7 +67,6 @@ function App() {
               formData={formData}
               setFormData={setFormData}
               availableTimes={availableTimes}
-              handleChange={handleChange}
               dispatch={dispatch}
               submitForm={submitForm}
             />}

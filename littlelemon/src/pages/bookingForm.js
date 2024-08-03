@@ -19,7 +19,11 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 
 const BookingForm = ({ formData, availableTimes, handleChange, dispatch, submitForm }) => {
-  // Validation schema using Yup
+  // const handleDateChange = (e) => {
+  //   handleChange(e);
+  //   const date = parse(e.target.value, 'yyyy-MM-dd', new Date());
+  //   dispatch({ type: 'updateTimes', date: fetchAPI(date), eventDate: date });
+  // };
   const validationSchema = Yup.object({
     name: Yup.string().required('Name is required'),
     date: Yup.date().required('Date is required'),
@@ -51,6 +55,10 @@ const BookingForm = ({ formData, availableTimes, handleChange, dispatch, submitF
                   placeholder="Name"
                   {...field}
                   isRequired
+                  onChange={(e) => {
+                    handleChange(e);
+                    setFieldValue(field.name, e.target.value);
+                  }}
                 />
                 <FormErrorMessage data-testid="name-error">{form.errors.name}</FormErrorMessage>
               </FormControl>
@@ -68,6 +76,7 @@ const BookingForm = ({ formData, availableTimes, handleChange, dispatch, submitF
                   {...field}
                   isRequired
                   onChange={(e) => {
+                    handleChange(e)
                     field.onChange(e);
                     const date = parse(e.target.value, 'yyyy-MM-dd', new Date());
                     dispatch({ type: 'updateTimes', date: fetchAPI(date), eventDate: date });
@@ -86,6 +95,10 @@ const BookingForm = ({ formData, availableTimes, handleChange, dispatch, submitF
                   data-testid="time-select"
                   placeholder="Select option"
                   {...field}
+                  onChange={(e) => {
+                      handleChange(e);
+                      setFieldValue(field.name, e.target.value);
+                    }}
                 >
                   {availableTimes.map((time) => (
                     <option key={time} value={time}>
@@ -107,7 +120,12 @@ const BookingForm = ({ formData, availableTimes, handleChange, dispatch, submitF
                   max={10}
                   min={1}
                   value={field.value}
-                  onChange={(valueString) => setFieldValue('numberOfPeople', valueString)}
+                  onChange={(valueString) => {
+                      handleChange({
+                        target: { name: field.name, value: valueString },
+                      });
+                      setFieldValue('numberOfPeople', valueString);
+                    }}
                   isRequired
                 >
                   <NumberInputField {...field} />
@@ -129,6 +147,10 @@ const BookingForm = ({ formData, availableTimes, handleChange, dispatch, submitF
                   data-testid="occasion-input"
                   placeholder="Occasion"
                   {...field}
+                  onChange={(e) => {
+                      handleChange(e);
+                      setFieldValue(field.name, e.target.value);
+                  }}
                   isRequired
                 />
                 <FormErrorMessage data-testid="occasion-error">{form.errors.occasion}</FormErrorMessage>
