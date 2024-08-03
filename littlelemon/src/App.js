@@ -44,7 +44,14 @@ function App() {
   const submitForm = (data) => {
     localStorage.setItem('reservationData', JSON.stringify(data));
     submitAPI(data);
-    console.log('Submitting form data:', formData);
+
+    setFormData({
+      name: '',
+      date: '',
+      time: '',
+      numberOfPeople: 1,
+      occasion: ''
+    });
   } 
   return (
     <ChakraProvider>
@@ -67,6 +74,7 @@ function App() {
               formData={formData}
               setFormData={setFormData}
               availableTimes={availableTimes}
+              handleChange={handleChange}
               dispatch={dispatch}
               submitForm={submitForm}
             />}

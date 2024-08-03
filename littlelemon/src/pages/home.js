@@ -7,7 +7,7 @@ const Home = ({ formData, availableTimes, handleChange, dispatch, submitForm }) 
     return ( 
         <>
             <CallToAction
-            formData={formData}
+              formData={formData}
               availableTimes={availableTimes}
               handleChange={handleChange}
               dispatch={dispatch}

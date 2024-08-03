@@ -25,7 +25,7 @@ const BookingModal = ({ children, title = 'Reservation Form', buttonText = 'Rese
             <ModalHeader>{title}</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
-              {children}
+            {React.cloneElement(children, { closeModal: onClose })}
             </ModalBody>
             <ModalFooter />
           </ModalContent>
